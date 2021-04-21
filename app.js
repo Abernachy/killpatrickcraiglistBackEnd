@@ -1,10 +1,12 @@
 const express = require('express')
 const knex = require('knex')(require('./knexfile.js')["development"]);
+const cors = require('cors')
 const app = express()
 const port = 3001
 
 //PLEASE PUT THIS IN THE LEARN. need this or else req.body is undefined
 app.use(express.json());
+app.use(cors())
 
 /*
 Things we'll have to look at doing once we get the basic post/remove working.
