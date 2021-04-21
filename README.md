@@ -12,6 +12,10 @@ This is the Back End for the Killpatrickcraiglist application we (Elgin , Richar
 ### NPM:
 1.  Install your npm packages (This will install express/pg/knex/cors/not viruses so dont worry about anything else):  
           $ npm install 
+
+2.  Start the express server.  Your endpoints wont work, but we wont let that stop us.
+          $ npm app.js
+          
 ### Docker Set up:
 1.  Start your docker postgres container.  We are using the command from the Galvanize school:  
       $  docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432  -v ~/docker/volumes/postgres:/var/lib/postgresql/data  postgres  
@@ -31,6 +35,11 @@ This is the Back End for the Killpatrickcraiglist application we (Elgin , Richar
       $ npx knex migrate:latest  \
         $ npx knex seed:run   
 
+## Endpoints
+Applicable endpoints are:
+1.        /posts => retrieves ALL POST
+2.        /users => retrieves ALL DA USERS
+3.        /locations => retrieves..yep, you guessed it, all locations.
 
 ## Closing
 That should be it.  If you have any questions, comments, concerns, please don't hestiate to let us know.  Thank you and have a wonderful day.
