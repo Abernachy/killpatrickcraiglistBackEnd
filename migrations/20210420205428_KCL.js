@@ -27,7 +27,7 @@ exports.up = function(knex, Promise) {
           })
       })
       .then( () => {
-          return knex.schema
+           return knex.schema
           .createTable('posts', function(post){
               post.increments('postsid').primary();
               post.string('post_title')

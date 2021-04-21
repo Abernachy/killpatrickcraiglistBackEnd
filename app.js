@@ -72,6 +72,7 @@ app.delete('/ads', (req, res) => {
 })
 
 app.patch('/ads', (req, res) => {
+  
     console.log(req.body)
     
     knex("posts").where({postsid: req.body.postsid}).update(req.body)
