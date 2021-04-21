@@ -20,7 +20,7 @@ This is the Back End for the Killpatrickcraiglist application we (Elgin , Richar
         $ docker container ls
         $ docker exec -it <the container id> bash 
 
-3.  Create the KCL database in your docker bash, and go into like its your house  
+3.  Create the KCL database in your docker bash, and go into it like its your house  
           $ createdb -U postgres KCL   
           $ psql -U postgres KCL 
 
