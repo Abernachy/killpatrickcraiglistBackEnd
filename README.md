@@ -13,7 +13,7 @@ This is the Back End for the Killpatrickcraiglist application we (Elgin , Richar
 1.  Install your npm packages (This will install express/pg/knex/cors/not viruses so dont worry about anything else):  
           $ npm install 
 
-2.  Start the express server.  Your endpoints wont work, but we wont let that stop us.
+2.  Start the express server.  Your endpoints wont return that sweet tasty data, but we wont let that stop us.
           $ npm app.js
           
 ### Docker Set up:
@@ -29,7 +29,7 @@ This is the Back End for the Killpatrickcraiglist application we (Elgin , Richar
           $ psql -U postgres KCL 
 
 ### Knex:
-1.  If you leave the knexfile.js untouched, the instructions below should work, unless you are in the Space Force, in which case, you need to joing a real military branch.
+1.  If you leave the knexfile.js untouched, the instructions below should work, unless you are in the Space Force, in which case, you need to join a real military branch.
 
 2.  Migrate the migrations table to your postGres database (KCL) and then seed them with your children  
       $ npx knex migrate:latest  \
