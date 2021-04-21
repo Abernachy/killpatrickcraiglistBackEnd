@@ -3,14 +3,14 @@
 
 Sup ya'll its ya boy, the README file. 
 
-this is the Back End for the Killpatrickcraiglist application we (Elgin , Richard, Steven, Michael).  To get this sucker going, the instructions and requirements are below:
+This is the Back End for the Killpatrickcraiglist application we (Elgin , Richard, Steven, Michael) developed.  To get this sucker going, the instructions and requirements are below:
 
 ## Requirements:
 1.   You need the latest PostGres docker image, so if you have docker installed, just simply pull it ($ docker pull postgres), if you dont have docker, go get and install it.
 
 ## Instructions:
 ### NPM:
-1.  Install your npm packages (This will install express/pg/knex/not viruses so dont worry about anything else):  
+1.  Install your npm packages (This will install express/pg/knex/cors/not viruses so dont worry about anything else):  
           $ npm install 
 ### Docker Set up:
 1.  Start your docker postgres container.  We are using the command from the Galvanize school:  
