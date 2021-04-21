@@ -6,6 +6,10 @@ const port = 3001
 //PLEASE PUT THIS IN THE LEARN. need this or else req.body is undefined
 app.use(express.json());
 
+/*
+Things we'll have to look at doing once we get the basic post/remove working.
+1: We are getting id numbers back from our foreign keys, I think we are supposed to use joins so we can get back the name of the value we want 
+*/
 app.get('/', (req,res) => res.send('Hello and shit'))
 
 app.listen(port, () => console.log('Listening to port: ' + port))
