@@ -49,11 +49,7 @@ app.get('/ads', (req,res)=>{
             message: 'Data not found'
         }))
 })
-/*
 
-Postman format:
-{"postsid":4 , "post_title":"i" , "post_body":"Hell" , "price":34 , "image_url":"www.google.com" , "base_id":2 , "tag_id":1, "user_id":1 }
-*/
 
 
 // Post and Delete
@@ -68,14 +64,33 @@ app.post('/ads', (req,res) => {
     })
 })
 
+app.delete('/ads', (req, res) => {
+    let postsid = req.body.postsid
+    knex("posts").where({postsid: postsid}).del()
+    .then(result => res.json({success:true, message: "Ad deleted"}))
+    .catch(err => res.json({message: err}))
+})
+
+app.patch('/ads', (req, res) => {
+    console.log(req.body)
+    
+    knex("posts").where({postsid: req.body.postsid}).update(req.body)
+    .then(result => res.json({success:true, message: "Ad updated"}))
+    .catch(err => res.json({message: err}))
+})
 /*
-23
+knex('books')
+  .where('published_date', '<', 2000)
+  .update({
+    status: 'archived',
+    thisKeyIsSkipped: undefined
+  })
 
-The problem in your code is that you are missing the ".then" statement, which causes the actual execution of the code.
-
-   knex('user').insert({email: req.body.email})
-      .then( function (result) {
-          res.json({ success: true, message: 'ok' });     // respond back to request
-       })
-That should work. Since knex.js's insert function is a promise, you need to call .then() to actually call it.
+Patch example:
+app.patch('/api/todos/:id', (req, res) => {
+  const todo = todos.find(todo => todo.id == req.params.id);
+  if (!todo) return res.sendStatus(404);
+  todo.completed = !todo.completed;
+  res.json(todo);
+ });
 */
