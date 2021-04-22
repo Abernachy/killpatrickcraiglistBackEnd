@@ -21,7 +21,7 @@ This is the Back End for the Killpatrickcraiglist application we (Elgin , Richar
       $  docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432  -v ~/docker/volumes/postgres:/var/lib/postgresql/data  postgres  
 
 2.  Find your container ID and use that to open the container into bash bash.  
-        $ docker container ls
+        $ docker container ls  
         $ docker exec -it <the container id> bash 
 
 3.  Create the KCL database in your docker bash, and go into it like its your house  
@@ -37,7 +37,7 @@ This is the Back End for the Killpatrickcraiglist application we (Elgin , Richar
 
 ## Endpoints
 Applicable endpoints are:
-1.        /posts => retrieves ALL POST
+1.        /posts => retrieves ALL POSTS
 2.        /users => retrieves ALL DA USERS
 3.        /locations => retrieves..yep, you guessed it, all locations.
 
