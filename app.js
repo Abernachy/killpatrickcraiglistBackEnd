@@ -10,7 +10,7 @@ app.use(express.json());
 // requires npm install cors
 app.use(cors())
 
-app.get('/', (req,res) => res.send('Hello and shit'))
+app.get('/', (req,res) => res.send('Hello'))
 
 app.listen(port, () => console.log('Listening to port: ' + port))
 
@@ -56,6 +56,7 @@ app.get('/ads', (req, res) => {
         return
     }
     // /ads?baseid=3
+    
     if (baseid != undefined && tagid == undefined) {
         //SELECT * FROM posts WHERE (base_id = baseid)
         knex.select().from('posts')
@@ -68,7 +69,7 @@ app.get('/ads', (req, res) => {
         }))
         return
     }
-
+        // 0 | 1
     if (baseid == undefined && tagid != undefined) {
         //SELECT * FROM posts WHERE (tag_id = tagid)
         knex.select().from('posts')
