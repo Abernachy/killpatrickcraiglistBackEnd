@@ -13,7 +13,7 @@ This is the Back End for the Killpatrickcraiglist application we (Elgin , Richar
 1.  Install your npm packages (This will install express/pg/knex/cors/not viruses so dont worry about anything else):  
           $ npm install 
 
-2.  Start the express server.  Your endpoints wont return that sweet tasty data, but we wont let that stop us.
+2.  Start the express server.  Your endpoints wont return that sweet tasty data, but we wont let that stop us:    
           $ npm app.js
           
 ### Docker Set up:
