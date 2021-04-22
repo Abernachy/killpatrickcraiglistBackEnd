@@ -59,7 +59,10 @@ exports.seed = function(knex, Promise) {
         base_id: 1,
         price: 55000,
         image_url: "https://bit.ly/3dAhe4c"
-    }
+    },
+    {post_title:'Motorcyle', post_body:"This is torcyle in the world, others don't even compare. Contact me at 555-555-5555", price:150 , image_url:'www.google.com' , base_id:3 , tag_id:1, user_id:1 },
+    {post_title:'Motorcyle', post_body:"This is the best motorcyle in the world 55-555-5555", price:150 , image_url:'www.google.com' , base_id:2 , tag_id:3, user_id:1 },
+    {post_title:'Mote', post_body:"Tthe best motorcyle in the world, others don't even compare. Contact me at 555-555-5555", price:150 , image_url:'www.google.com' , base_id:1 , tag_id:2, user_id:1 }
       ])
     })
 };

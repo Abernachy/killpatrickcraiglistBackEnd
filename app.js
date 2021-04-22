@@ -39,18 +39,69 @@ app.get('/locations', (req,res)=>{
         }))
 })
 
-app.get('/ads', (req,res)=>{
+
+app.get('/ads', (req, res) => {
+    let {baseid, tagid} = req.query
+    if (baseid != undefined && tagid != undefined) {
+        //SELECT  * FROM posts WHERE (base_id = baseid , tag_id = tagid )
+        knex.select().from('posts')
+            .where({
+                base_id: baseid,
+                tag_id: tagid
+            })
+            .then(data => res.status(200).json(data))
+            .catch(err => res.status(404).json({
+                message: 'no ads found with baseid or tagid: '+ err
+            }))
+        return
+    }
+    // /ads?baseid=3
+    if (baseid != undefined && tagid == undefined) {
+        //SELECT * FROM posts WHERE (base_id = baseid)
+        knex.select().from('posts')
+        .where({
+            base_id: baseid
+        })
+        .then(data => res.status(200).json(data))
+        .catch(err => res.status(404).json({
+            message: `no ads found with baseid: `+ err
+        }))
+        return
+    }
+
+    if (baseid == undefined && tagid != undefined) {
+        //SELECT * FROM posts WHERE (tag_id = tagid)
+        knex.select().from('posts')
+        .where({
+            tag_id: tagid
+        })
+        .then(data => res.status(200).json(data))
+        .catch(err => res.status(404).json({
+            message: 'no ads found with tagid: '+ err
+        }))
+        return
+    }
+    
     knex
     .select()
     .from("posts")
     .then(data => res.status(200).json(data))
     .catch(err => 
         res.status(404).json({
-            message: 'Data not found'
-        }))
+            message: 'Data not found' + err
+        })
+    )
 })
 
-
+app.get("/ads/:id", (req, res) => {
+    let postsid = req.params.id
+    knex.select().from("posts").where("postsid", postsid)
+    .then(data => res.status(200).json(data))
+    .catch(err => res.status(404).json({
+        message: `no ad with id of ${postsid} found`
+        })
+    )
+})
 
 // Post and Delete
 app.post('/ads', (req,res) => {
@@ -79,19 +130,8 @@ app.patch('/ads', (req, res) => {
     .then(result => res.json({success:true, message: "Ad updated"}))
     .catch(err => res.json({message: err}))
 })
-/*
-knex('books')
-  .where('published_date', '<', 2000)
-  .update({
-    status: 'archived',
-    thisKeyIsSkipped: undefined
-  })
 
-Patch example:
-app.patch('/api/todos/:id', (req, res) => {
-  const todo = todos.find(todo => todo.id == req.params.id);
-  if (!todo) return res.sendStatus(404);
-  todo.completed = !todo.completed;
-  res.json(todo);
- });
-*/
+// Error Handling
+app.use(function (err,req, res,next){
+    
+})
