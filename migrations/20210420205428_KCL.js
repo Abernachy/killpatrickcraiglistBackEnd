@@ -31,7 +31,7 @@ exports.up = function(knex, Promise) {
           .createTable('posts', function(post){
               post.increments('postsid').primary();
               post.string('post_title')
-              post.string('post_body')
+              post.string('post_body', 10000)
               post.integer('price')
               post.timestamp('created_at').defaultTo(knex.fn.now())
               post.integer('base_id').notNullable()
