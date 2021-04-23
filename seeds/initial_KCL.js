@@ -49,7 +49,7 @@ exports.seed = function(knex, Promise) {
 
         {post_title: "Nintendo Switch", post_body: "I'm selling a Nintendo Switch, please buy it", price: 450, image_url: "https://bit.ly/2PgSQex", contact_info:"867-5306", base_id: 1, tag_id: 3, user_id: 1},
         
-        {post_title:'78 Dodge Charger', post_body:"Financing available for as low as $1780 a month, no money down", price:1780 , image_url:'https://bit.ly/2QL6Ays' , contact_info:"kelly.blue@usaa.com", base_id:2 , tag_id:3, user_id:1 },
+        {post_title:'78 Dodge Charger', post_body:"Financing available for as low as $1780 a month, no money down", price:1780 , image_url:'https://bit.ly/32DG3WC' , contact_info:"kelly.blue@usaa.com", base_id:2 , tag_id:3, user_id:1 },
 
 
         //Buying Seeds
