@@ -37,6 +37,7 @@ exports.up = function(knex, Promise) {
               post.integer('base_id').notNullable()
               post.foreign('base_id').references('locationsid').inTable('locations')
               post.string('image_url')
+              post.string('contact_info')
               post.integer('tag_id').notNullable()
               post.foreign('tag_id').references('tagid').inTable('tags')
               post.integer('user_id').notNullable()
