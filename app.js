@@ -14,11 +14,6 @@ app.get('/', (req,res) => res.send('Hello'))
 
 app.listen(port, () => console.log('Listening to port: ' + port))
 
-//Error Test route
-app.get('/errorstuff', (req,res) =>{
-   next()
-})
-
 app.get('/users', (req,res) => {
     //res.send(knex.select().table('users'))
     // SELECT * FROM users
@@ -30,8 +25,6 @@ app.get('/locations', (req,res)=>{
     knex.select().from("locations")
     .then(data => res.status(200).json(data))
 })
-
-
 
 app.get('/ads', (req, res) => {
     // /ads?tagid=X&baseid=X
@@ -53,8 +46,7 @@ app.get('/ads', (req, res) => {
     .then(data => res.status(200).json(data))
     }})
    
-
-
+// Grab a specific ad based on id
 app.get("/ads/:id", (req, res) => {
     let postsid = req.params.id
     knex.select().from("posts").where("postsid", postsid)
