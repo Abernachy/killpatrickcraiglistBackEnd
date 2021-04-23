@@ -37,9 +37,11 @@ This is the Back End for the Killpatrickcraiglist application we (Elgin , Richar
 
 ## Endpoints
 Applicable endpoints are:
-1.        /posts => retrieves ALL POSTS
+1.        /ads => retrieves ALL POSTS
 2.        /users => retrieves ALL DA USERS
 3.        /locations => retrieves..yep, you guessed it, all locations.
+4.        /ads/(id #) => retrieves the posts with the ID number
+5.        /ads?baseid=x(&tagid=x) => retrieves the ads based on the baseId and/or tagID, if nothing is specified it does the above.
 
 ## Closing
 That should be it.  If you have any questions, comments, concerns, please don't hestiate to let us know.  Thank you and have a wonderful day.
