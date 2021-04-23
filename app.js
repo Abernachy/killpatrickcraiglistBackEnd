@@ -14,94 +14,51 @@ app.get('/', (req,res) => res.send('Hello'))
 
 app.listen(port, () => console.log('Listening to port: ' + port))
 
+//Error Test route
+app.get('/errorstuff', (req,res) =>{
+   next()
+})
 
 app.get('/users', (req,res) => {
     //res.send(knex.select().table('users'))
-    knex
-    .select()
-    .from("users")
-    .then(data => res.status(200).json(data))
-    .catch(err => 
-        res.status(404).json({
-            message: 'The data you are looking for could not be found. Please try again'
-        }
-        ))
-})
+    // SELECT * FROM users
+    knex.select().from("users")
+    .then(data =>res.status(200).json(data))
+    })
 
 app.get('/locations', (req,res)=>{
-    knex
-    .select()
-    .from("locations")
+    knex.select().from("locations")
     .then(data => res.status(200).json(data))
-    .catch(err => 
-        res.status(404).json({
-            message: 'Data not found'
-        }))
 })
+
 
 
 app.get('/ads', (req, res) => {
+    // /ads?tagid=X&baseid=X
     let {baseid, tagid} = req.query
     if (baseid != undefined && tagid != undefined) {
-        //SELECT  * FROM posts WHERE (base_id = baseid , tag_id = tagid )
-        knex.select().from('posts')
-            .where({
-                base_id: baseid,
-                tag_id: tagid
-            })
-            .then(data => res.status(200).json(data))
-            .catch(err => res.status(404).json({
-                message: 'no ads found with baseid or tagid: '+ err
-            }))
-        return
-    }
-    // /ads?baseid=3
-    
-    if (baseid != undefined && tagid == undefined) {
-        //SELECT * FROM posts WHERE (base_id = baseid)
-        knex.select().from('posts')
-        .where({
-            base_id: baseid
-        })
-        .then(data => res.status(200).json(data))
-        .catch(err => res.status(404).json({
-            message: `no ads found with baseid: `+ err
-        }))
-        return
-    }
-        // 0 | 1
-    if (baseid == undefined && tagid != undefined) {
-        //SELECT * FROM posts WHERE (tag_id = tagid)
-        knex.select().from('posts')
-        .where({
-            tag_id: tagid
-        })
-        .then(data => res.status(200).json(data))
-        .catch(err => res.status(404).json({
-            message: 'no ads found with tagid: '+ err
-        }))
-        return
-    }
-    
-    knex
-    .select()
-    .from("posts")
+    knex.select().from('posts').where({base_id: baseid,tag_id: tagid})
     .then(data => res.status(200).json(data))
-    .catch(err => 
-        res.status(404).json({
-            message: 'Data not found' + err
-        })
-    )
-})
+
+    } else if  (baseid != undefined && tagid == undefined) {
+    knex.select().from('posts').where('base_id',baseid)
+    .then(data => res.status(200).json(data))
+
+    } else if (baseid == undefined && tagid != undefined){
+    knex.select().from('posts').where('tag_id',tagid)
+    .then(data => res.status(200).json(data))
+
+    }else {
+    knex.select().from('posts')
+    .then(data => res.status(200).json(data))
+    }})
+   
+
 
 app.get("/ads/:id", (req, res) => {
     let postsid = req.params.id
     knex.select().from("posts").where("postsid", postsid)
     .then(data => res.status(200).json(data))
-    .catch(err => res.status(404).json({
-        message: `no ad with id of ${postsid} found`
-        })
-    )
 })
 
 // Post and Delete
@@ -111,28 +68,29 @@ app.post('/ads', (req,res) => {
     .then( (result) => {
         res.json({ success: true, message: 'ok'})
     })
-    .catch( (err) =>{
-        res.json({message:"No Go " + err})
-    })
 })
 
 app.delete('/ads', (req, res) => {
     let postsid = req.body.postsid
     knex("posts").where({postsid: postsid}).del()
     .then(result => res.json({success:true, message: "Ad deleted"}))
-    .catch(err => res.json({message: err}))
 })
 
-app.patch('/ads', (req, res) => {
-  
-    console.log(req.body)
-    
+app.patch('/ads', (req, res) => {  
     knex("posts").where({postsid: req.body.postsid}).update(req.body)
     .then(result => res.json({success:true, message: "Ad updated"}))
-    .catch(err => res.json({message: err}))
 })
 
 // Error Handling
+
 app.use(function (err,req, res,next){
-    
-})
+    res.status(err.status || 500);
+    if (res.status == 404){
+        res.json({'ERROR': "Data not found"})
+    } else{
+        res.json({
+            'error': {
+                message: "We were unable to retrieve your requested resource, please try again or re-do your request"
+        }})
+    }})
+
