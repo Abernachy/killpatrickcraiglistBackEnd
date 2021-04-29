@@ -1,5 +1,9 @@
 # killpatrickcraiglistBackEnd
-
+---------------------
+note for future me since you keep coming here:
+Hey hot stuff, so the easiest way to simplify this stuff below is to create a docker image using a Dockerfile that uses postgres as its base image, but runs the commands below on start.  This way, from an end user perspective, the container can just be pulled from hub and started, no extra magic or sweet stuff required.  Take some time and look into that.  
+Stay handsom
+---------------------------
 
 Sup ya'll its ya boy, the README file. 
 
